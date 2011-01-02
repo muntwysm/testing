@@ -14,7 +14,7 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.47 r22583"
-   inkscape:export-filename="/home/smuntwyler/rails_projects/twitter/public/images/logo2.png"
+   inkscape:export-filename="/home/smuntwyler/rails_projects/twitter/public/images/logo.png"
    inkscape:export-xdpi="90"
    inkscape:export-ydpi="90"
    sodipodi:docname="logo.svg">
@@ -79,14 +79,14 @@
     <text
        xml:space="preserve"
        style="font-size:13.13995457px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#5fbcd3;fill-opacity:1;stroke:none;font-family:Arab;-inkscape-font-specification:Arab"
-       x="7.1120143"
-       y="1012.065"
+       x="29.946663"
+       y="1010.4272"
        id="text2816"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan2818"
-         x="7.1120143"
-         y="1012.065">muntwysm production</tspan></text>
+         x="29.946663"
+         y="1010.4272">muntwysm</tspan></text>
     <text
        sodipodi:linespacing="125%"
        id="text2820"
@@ -101,7 +101,7 @@
          dx="0 -2.2243202 -3.7072005 -4.0779204 -1.8536003 -3.3364804 -5.1900802 0 -18.536003 -3.7072005 -2.2243202">MyTwitt App</tspan></text>
     <g
        id="g3653"
-       transform="matrix(0.1713317,0,0,0.1713317,117.61535,837.94379)">
+       transform="matrix(0.14219304,0,0,0.14219304,-23.735836,864.03142)">
       <path
          style="fill:#000000;fill-opacity:1;stroke:none;filter:url(#filter3649)"
          d="m 365.35434,1040.1689 c 0,11.4705 -47.51187,28.335 -77.95276,28.335 -30.44089,0 -55.11811,-9.2987 -55.11811,-20.7691 0,-11.4705 70.74021,-20.1758 101.1811,-20.1758 30.44089,0 31.88977,1.1394 31.88977,12.6099 z"
