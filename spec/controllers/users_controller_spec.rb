@@ -3,6 +3,59 @@ require 'spec_helper'
 describe UsersController do
   integrate_views
 
+  describe "GET 'index'" do
+
+    describe "for non-signed-in users" do
+      it "should deny access" do
+        get :index
+        response.should redirect_to(signin_path)
+        flash[:notice].should =~ /sign in/i
+      end
+    end
+
+    describe "for signed-in users" do
+
+      before(:each) do
+        @user = test_sign_in(Factory(:user))
+        second = Factory(:user, :email => "another@example.com")
+        third  = Factory(:user, :email => "another@example.net")
+
+        @users = [@user, second, third]
+        30.times do
+          @users << Factory(:user, :email => Factory.next(:email))
+        end
+        User.should_receive(:paginate).and_return(@users.paginate)
+      end
+
+
+      it "should be successful" do
+        get :index
+        response.should be_success
+      end
+
+      it "should have the right title" do
+        get :index
+        response.should have_tag("title", /all users/i)
+      end
+
+      it "should have an element for each user" do
+        get :index
+        @users[0..2].each do |user|
+          response.should have_tag("li", user.name)
+        end
+      end
+
+      it "should paginate users" do
+        get :index
+        response.should have_tag("div.pagination")
+        response.should have_tag("span", "&laquo; Previous")
+        response.should have_tag("span", "1")
+        response.should have_tag("a[href=?]", "/users?page=2", "2")
+        response.should have_tag("a[href=?]", "/users?page=2", "Next &raquo;")
+      end
+    end
+  end
+
   describe "GET 'show'" do
 
     before(:each) do
