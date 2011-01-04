@@ -1,7 +1,6 @@
 <h2>All users</h2>
 
-<p><%= "Active members: #{@active_users}" %>
-
+<p><%= "Total Users: #{@all_users} - (#{@active_users} Active and #{@inactive_users} Inactive) " %>
 <%= will_paginate %>
 
 <ul class="users">

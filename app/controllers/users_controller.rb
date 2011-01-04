@@ -5,7 +5,10 @@ class UsersController < ApplicationController
 
   def index
     @title = "All users"
-    @users = User.paginate(:page => params[:page])
+    @users = User.paginate(:page => params[:page],
+														:conditions => ["active = ?", true],
+           									:order => :name)
+    @active_users = User.count(:conditions => "active = true")
   end
 
   def show
@@ -42,25 +45,6 @@ class UsersController < ApplicationController
       @title = "Edit user"
       render 'edit'
     end
-  end
-
-  def toggle_active
-    user = User.find(params[:id])
-    if user.toggle!(:active)
-      status = "activated"
-      status = "deactivated" unless user.active?
-      flash[:success] = "#{user.name} has been #{status}."
-    redirect_to users_path
-    else
-      flash[:error] = "#{user.name} status unchanged"
-    redirect_to users_path
-    end
-  end
-
-  def destroy
-    User.find(params[:id]).destroy
-    flash[:success] = "User destroyed."
-    redirect_to users_path
   end
 
   private
