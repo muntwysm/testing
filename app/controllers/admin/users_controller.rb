@@ -23,15 +23,20 @@ class Admin::UsersController < ApplicationController
 
   def toggle_admin
     user = User.find(params[:id])
-    if user.toggle!(:admin)
-      status = "granted"
-      status = "removed" unless user.admin?
-      flash[:success] = "#{user.name} has 'Admin' #{status}."
-    redirect_to admin_users_path
-    else
-      flash[:notice] = "#{user.name} status unchanged"
-    redirect_to admin_users_path
-    end
+		if (multiple_admin || user.admin == false)
+		  if user.toggle!(:admin)
+		    status = "granted"
+		    status = "removed" unless user.admin?
+		    flash[:success] = "#{user.name} has 'Admin' #{status}."
+		  	redirect_to admin_users_path
+		  else
+		    flash[:notice] = "#{user.name} status unchanged"
+		  	redirect_to admin_users_path
+		  end
+		else
+		flash[:error] = "Admin status remains -- #{user.name} is the last Admin!"
+		redirect_to admin_users_path
+		end
   end
 
   def destroy
@@ -39,5 +44,12 @@ class Admin::UsersController < ApplicationController
     flash[:success] = "User destroyed."
     redirect_to admin_users_path
   end
+
+  private
+
+	def multiple_admin
+		return true if User.count(:conditions => "admin = true") > 1
+		return false
+	end
 
 end
