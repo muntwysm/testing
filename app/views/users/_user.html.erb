@@ -4,7 +4,7 @@
   <% if current_user.admin? %>
   | <%= link_to "delete", user, :method => :delete, :confirm => "You sure?" %>
   <% end %>
-
+<%= user.active %>
   <% if user.active? %>
   | <%= link_to "deactivate", "users/toggle_active/#{user.id}" %>
   <% else %>
