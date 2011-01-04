@@ -5,4 +5,9 @@
   | <%= link_to "delete", user, :method => :delete, :confirm => "You sure?" %>
   <% end %>
 
+  <% if user.active? %>
+  | <%= link_to "deactivate", "users/toggle_active/#{user.id}" %>
+  <% else %>
+  | <%= link_to "activate", "users/toggle_active/#{user.id}" %>
+  <% end %>
 </li>

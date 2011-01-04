@@ -44,6 +44,19 @@ class UsersController < ApplicationController
     end
   end
 
+  def toggle_active
+    user = User.find(params[:id])
+    if user.toggle!(:active)
+      status = "activated"
+      status = "deactivated" unless user.active?
+      flash[:success] = "#{user.name} has been #{status}."
+    redirect_to users_path
+    else
+      flash[:error] = "#{user.name} status unchanged"
+    redirect_to users_path
+    end
+  end
+
   def destroy
     User.find(params[:id]).destroy
     flash[:success] = "User destroyed."
