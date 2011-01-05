@@ -1,4 +1,6 @@
 class Admin::UsersController < ApplicationController
+  before_filter :authenticate, :only => [:index, :edit, :update, :destroy]
+  before_filter :admin_user
 
   def index
     @title = "All users"

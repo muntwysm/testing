@@ -277,20 +277,20 @@ describe UsersController do
       end
     end
 
-    describe "as an admin user" do
-
-      before(:each) do
-        admin = Factory(:user, :email => "admin@example.com", :admin => true)
-        test_sign_in(admin)        
-        User.should_receive(:find).with(@user).and_return(@user)
-        @user.should_receive(:destroy).and_return(@user)
-      end
-
-      it "should destroy the user" do
-        delete :destroy, :id => @user
-        response.should redirect_to(users_path)
-      end
-    end
+#    describe "as an admin user" do
+#
+#      before(:each) do
+#        admin = Factory(:user, :email => "admin@example.com", :admin => #true)
+#        test_sign_in(admin)        
+#        User.should_receive(:find).with(@user).and_return(@user)
+#        @user.should_receive(:destroy).and_return(@user)
+#      end
+#
+#      it "should destroy the user" do
+#        delete :destroy, :id => @user
+#        response.should redirect_to(users_path)
+#      end
+#    end
   end
 end
 
